@@ -3,5 +3,6 @@
 body {
   background-color: var(--color-black);
   color: var(--color-white);
+  margin-top: 100px;
 }
 
