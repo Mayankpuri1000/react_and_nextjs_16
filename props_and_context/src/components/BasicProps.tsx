@@ -32,7 +32,7 @@ function BasicProps() {
   const [clickCount, setClickCount] = useState(0);
   return (
     <section className="p-8 bg-white text-black rounded-xl shadow-2xl">
-      <h2>Basic Props</h2>
+      <h2 className="font-extrabold text-3xl">Basic Props</h2>
       <p>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae
         cupiditate reiciendis voluptates saepe quasi iusto!
