@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+body {
+    background-color: var(--color-zinc-800);
+    color: var(--color-white);
+    margin: 2px;
+    padding: 2px;
+}
