@@ -2,7 +2,7 @@ import { useState } from "react";
 import DisplayForm from "./components/DisplayForm"
 import DisplayList from "./components/DisplayList"
 
-type Customer = {
+export type Customer = {
   id: string;
   name: string;
   service: string;
@@ -11,35 +11,34 @@ type Customer = {
 
 function App() {
 
-  const [queue, setQueue] = useState([]);
+  const [queue, setQueue] = useState<Customer[]>([]);
 
-  const addToQueue = (customer: Customer) => {
-    // add the customer to the queue
-  }
+  const addToQueue = (name: string, service: string) => {
+    setQueue([...queue, { id: crypto.randomUUID(), name, service, status: "waiting" }]);
+  };
 
   const updateStatus = (id: string, status: string) => {
-    // update the status of the customer
+    setQueue(queue.map(customer => customer.id === id ? {...customer, status} : customer));
   }
 
   const removeFromQueue = (id: string) => {
-    // remove the customer from the queue
+    setQueue(queue.filter(customer => customer.id !== id));
   }
 
 
   return (
-    <div className="flex flex-col items-center justify-center gap-3 w-full">
-      <header className="flex flex-col items-center justify-center gap-3">
-        <h1 className="text-3xl font-extrabold text-purple-600">Queue Management Application</h1>
-        <p>Manage your customers efficiently</p>
+    <div className="app">
+      <header className="app-header">
+        <h1 className="app-title">Queue Management Application</h1>
+        <p className="app-subtitle">Manage your customers efficiently</p>
       </header>
 
-      <main className="flex items-center justify-center mt-5 gap-3 w-full">
+      <main className="app-main">
         <DisplayForm onAdd={addToQueue} />
-        <DisplayList />
+        <DisplayList queue={queue} onUpdateStatus={updateStatus} onRemoveCustomer={removeFromQueue} />
       </main>
     </div>
-
-  )
+  );
 }
 
-export default App
+export default App;

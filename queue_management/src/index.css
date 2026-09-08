@@ -1,8 +1,258 @@
-@import "tailwindcss";
-
-body {
-  background-color: var(--color-black);
-  color: var(--color-white);
-  margin-top: 100px;
+:root {
+  --bg-page: #000000;
+  --bg-panel: #1c1e22;
+  --bg-item: #16171a;
+  --border: rgb(63 63 70 / 0.6);
+  --border-strong: #52525b;
+  --text: #ffffff;
+  --text-muted: #a1a1aa;
+  --accent: #9333ea;
+  --accent-hover: #7e22ce;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --status-waiting: #eab308;
+  --status-in-progress: #3b82f6;
+  --status-completed: #22c55e;
+  --status-default: #6b7280;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  margin-top: 100px;
+  background-color: var(--bg-page);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.app-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.app-subtitle {
+  margin: 0;
+}
+
+.app-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.25rem;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.panel {
+  width: 100%;
+  max-width: 28rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background-color: var(--bg-panel);
+  padding: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+}
+
+.icon {
+  width: 0.9em;
+  height: 0.9em;
+  flex-shrink: 0;
+}
+
+.icon-lg {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+.panel-title {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.queue-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-strong);
+  background-color: var(--bg-panel);
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 150ms, box-shadow 150ms;
+}
+
+.field::placeholder {
+  color: var(--text-muted);
+}
+
+.field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: background-color 150ms, border-color 150ms;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  padding: 0.75rem 1rem;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-secondary {
+  flex: 1;
+  border: 1px solid var(--border-strong);
+  background-color: var(--bg-panel);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+}
+
+.btn-small {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.btn-danger {
+  background-color: var(--danger);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.btn-danger:hover {
+  background-color: var(--danger-hover);
+}
+
+.empty-message {
+  margin: 1rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+}
+
+.queue-list {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.queue-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background-color: var(--bg-item);
+  padding: 1rem;
+}
+
+.queue-item-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.customer-name,
+.customer-service {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.customer-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.customer-service {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #000000;
+  background-color: var(--status-default);
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.status-waiting {
+  background-color: var(--status-waiting);
+}
+
+.status-in_progress {
+  background-color: var(--status-in-progress);
+}
+
+.status-completed {
+  background-color: var(--status-completed);
+}
+
+.queue-item-actions {
+  display: flex;
+  gap: 0.5rem;
+}
