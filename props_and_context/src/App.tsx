@@ -2,7 +2,7 @@ import BasicProps from "./components/BasicProps"
 import ChildrenProps from "./components/ChildrenProps"
 import ComplexProps from "./components/ComplexProps"
 import RefProps from "./components/RefProps"
-import ThemeToggler from "./components/ThemeToggler"
+import ThemeToggler, { ThemeProvider } from "./components/ThemeToggler"
 
 type Section = {
   id: string;
@@ -40,14 +40,16 @@ function Navigation() {
 function App() {
   return (
     <div>
-      <Navigation />
-      <BasicProps />
-      <ChildrenProps />
-      <ComplexProps />
-      <RefProps />
-      <ThemeToggler />
+      <ThemeProvider>
+        <Navigation />
+        <BasicProps />
+        <ChildrenProps />
+        <ComplexProps />
+        <RefProps />
+        <ThemeToggler />
+      </ThemeProvider>
     </div>
-  )
+  );
 }
 
 export default App
